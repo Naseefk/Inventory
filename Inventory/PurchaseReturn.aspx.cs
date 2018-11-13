@@ -39,7 +39,7 @@ namespace Purchase
         {
             if (!Page.IsPostBack)
             {
-                txtDate.Text = DateTime.Now.Date.ToString("yyyy-MM-dd");
+                txtInvoiceDate.Text = DateTime.Now.Date.ToString("dd-MM-yyyy");
                 c.ExcecuteQuery("Select max(BillNo) from PurchaseReturnTable");
                 if (c.DT.Rows[0][0].ToString().Length == 0)
                 {
@@ -115,6 +115,7 @@ namespace Purchase
         }
         public void ReturnItemsData()
         {
+            Grid2.Visible = true;
             r.ExcecuteQuery("Select ROW_NUMBER() over(order by t1.Item) as IndexNo, *from PurchaseTable t1 inner join ProductTable t2 on t1.Item = t2.P_name inner join PurchaseInvoiceTable t3 on t1.PurchaseNo = t3.P_No where t3.P_InvoiceNo = '" + txtPInvoiceNo.Text + "'");
 
             Grid2.DataSource = r.ds;
@@ -122,7 +123,8 @@ namespace Purchase
         }
         protected void txtBillNo_TextChanged(object sender, EventArgs e)
         {
-            a1.ExcecuteQuery("Select * from PurchaseRInvoiceTable t1 inner join SupplierTable t2 on t1.S_name=t2.S_id where PR_No='" + txtBillNo.Text + "'");
+            Grid2.Visible = false;
+            a1.ExcecuteQuery("Select * from PurchaseRInvoiceTable t1 inner join SupplierTable t2 on t1.S_name=t2.S_name where PR_No='" + txtBillNo.Text + "'");
             if (a1.DT.Rows.Count != 0)
             {
                 txtInvoiceNo.Text = a1.DT.Rows[0][0].ToString();
@@ -253,7 +255,7 @@ namespace Purchase
                 q.ExcecuteNonQuery("Update ProductTable set P_unit='" + quantity + "' where P_id='" + pId + "' ");
                 quantity = 0;
             }
-            p1.ExcecuteNonQuery("Insert into PurchaseRInvoiceTable (  PR_InvoiceNo, PR_Date, S_name, Total, PR_No) values('" + txtInvoiceNo.Text + "','" + DateTime.Now.ToString("dd-MM-yyyy hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtTotal.Text + "','" + txtBillNo.Text + "')");
+            p1.ExcecuteNonQuery("Insert into PurchaseRInvoiceTable (  PR_InvoiceNo, PR_Date, S_name, Total, PR_No) values('" + txtInvoiceNo.Text + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtTotal.Text + "','" + txtBillNo.Text + "')");
             BindData();
             
         }

@@ -30,6 +30,7 @@ namespace Purchase
         DBCON q = new DBCON();
         DBCON r = new DBCON();
         DBCON s = new DBCON();
+        DBCON t = new DBCON();
         double total;
         double tax;
         double stotal;
@@ -228,7 +229,7 @@ namespace Purchase
                 else
                 {
                     
-                    g.ExcecuteNonQuery("Insert into PurchaseTable (PurchaseNo, Category, Item, NoOfUnit, Total, PurchaseStatus, PurchaseDate) values('" + txtPurchaseNo.Text + "','" + ddlCategory.SelectedItem.Text + "','" + ddlItem.SelectedItem.Text + "','" + txtNoOfUnit.Text + "','" + txtAmount.Text + "','false','" + txtDate.Text + "')");
+                    g.ExcecuteNonQuery("Insert into PurchaseTable (PurchaseNo, Category, Item, NoOfUnit, Total, PurchaseStatus) values('" + txtPurchaseNo.Text + "','" + ddlCategory.SelectedItem.Text + "','" + ddlItem.SelectedItem.Text + "','" + txtNoOfUnit.Text + "','" + txtAmount.Text + "','false')");
                     
                     BindData();
                     Clear();
@@ -258,8 +259,13 @@ namespace Purchase
                 q.ExcecuteNonQuery("Update ProductTable set P_unit='" + quantity + "' where P_id='" + pId + "' ");
                 quantity = 0;
             }
-            p1.ExcecuteNonQuery("Insert into PurchaseInvoiceTable ( P_InvoiceNo, P_Date, S_name, Discount, Total, Notes, Mop, P_No) values('" + txtPurchaseInvoice.Text + "','" + DateTime.Now.ToString("dd-MM-yyyy hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtDiscount.Text + "','" + txtTotal.Text + "','" + txtNotes.Text + "','" + ddlPaymentType.SelectedItem.Text + "','" + txtPurchaseNo.Text + "')");
+            p1.ExcecuteNonQuery("Insert into PurchaseInvoiceTable ( P_InvoiceNo, P_Date, S_name, Discount, Total, Notes, Mop, P_No) values('" + txtPurchaseInvoice.Text + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtDiscount.Text + "','" + txtTotal.Text + "','" + txtNotes.Text + "','" + ddlPaymentType.SelectedItem.Text + "','" + txtPurchaseNo.Text + "')");
+            if (ddlPaymentType.SelectedItem.Text == "Credit")
+            {
+                t.ExcecuteNonQuery("Update SupplierTable set Balance='" + txtTotal.Text + "' where S_name='" + ddlSupplier.SelectedItem.Text + "'");
+            }
             BindData();
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

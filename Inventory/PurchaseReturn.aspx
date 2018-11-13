@@ -55,7 +55,7 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="Scripts/jquery.searchabledropdown-1.0.8.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
+   <%-- <script type="text/javascript">
         $(document).ready(function () {
             $("select").searchable({
                 maxListSize: 200, // if list size are less than maxListSize, show them all
@@ -70,7 +70,7 @@
             });
         });
 
-    </script>
+    </script>--%>
     <script>
         function MyPopUpWin(url, width, height) {
             var pino = document.getElementById("txtInvoiceNo");
@@ -116,29 +116,32 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <asp:Label ID="Label1" runat="server" Text="Purchase Return No. "></asp:Label>
-                                <asp:TextBox ID="txtBillNo" runat="server" CssClass="col-sm-4" Style="margin-left: 7px" AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged" Font-Bold="True"></asp:TextBox>
+                                <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control-sm form-control width" Style="margin-left: 7px" AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged" Font-Bold="True"></asp:TextBox>
                                 <br />
                                 <br />
                                 <asp:Label ID="Label4" runat="server" Text="Purchase Invoice No."></asp:Label>
-                                <asp:TextBox ID="txtPInvoiceNo" runat="server" AutoPostBack="true"  OnTextChanged="txtPInvoiceNo_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtPInvoiceNo" runat="server" CssClass="form-control-sm form-control width" Style="margin-left: 4px" AutoPostBack="true"  OnTextChanged="txtPInvoiceNo_TextChanged"></asp:TextBox>
                             </div>
                             <div class="col-lg-4">
-                                <asp:Label ID="lblDate" runat="server" Text="Return Date"></asp:Label>
-                                <asp:TextBox ID="txtDate" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:Label ID="lblDate" runat="server" Text="Purchase Date"></asp:Label>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm width" TextMode="Date"></asp:TextBox>
                                 <br />
                                 <br />
                                 <div class="row">
                                     <asp:Label ID="Label5" runat="server" Style="margin-left: 15px" Text="Supplier"></asp:Label>
-                                    <div style="margin-left: 27px">
-                                        <asp:DropDownList ID="ddlSupplier" runat="server"></asp:DropDownList>
-                                        <asp:TextBox ID="txtSupplier" runat="server" Visible="false"></asp:TextBox>
-                                    </div>
-                                    <a onclick="MyPopUpWin1('/AddSupplier.aspx',500,500); return false;" style="margin-left: 4px; color: #fff" class=" btn btn-success  btn-sm "><i class="fa fa-plus"></i></a>
+                                 
+                                        <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control" style="margin-left: 40px"></asp:DropDownList>
+                                   
+                                    <a onclick="MyPopUpWin1('/AddSupplier.aspx',500,500); return false;" style="margin-left: 4px; color: #fff" class=" btn btn-success"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                         <div class="col-lg-4">
-                            <asp:TextBox ID="txtInvoiceNo" runat="server" CssClass=" col-sm-4 float-right" Font-Bold="True" Enabled="false"></asp:TextBox>
-                            <asp:Label ID="Label3" runat="server" CssClass="float-right" Text="Invoice No" Style="margin-right: 10px"></asp:Label>
+                            <asp:TextBox ID="txtInvoiceNo" runat="server" CssClass=" col-sm-4 form-control-sm form-control float-right" Font-Bold="True" Enabled="false"></asp:TextBox>
+                            <asp:Label ID="Label3" runat="server" CssClass="float-right" Text="Invoice No" style="margin-right: 18px"></asp:Label>
+                            <br />
+                            <br />
+                            <asp:TextBox ID="txtInvoiceDate" runat="server" CssClass="col-sm-4 form-control-sm form-control width float-right" Enabled="false" ></asp:TextBox>
+                            <asp:Label ID="Label6" runat="server" CssClass="float-right" style="margin-right: 10px" Text="Return Date"></asp:Label>
                         </div>
                         </div>
 
@@ -172,21 +175,21 @@
                             <tr>
 
                                 <td style="width: 225px">Category:<br />
-                                    <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true" CssClass="form-control ddlht" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td style="width: 300px">Item:<br />
-                                    <asp:DropDownList ID="ddlItem" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlItem" runat="server" AutoPostBack="true" CssClass="form-control ddlht" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td style="width: 75px">Qty:<br />
-                                    <asp:TextBox ID="txtNoOfUnit" runat="server" AutoPostBack="True" OnTextChanged="txtNoOfUnit_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="txtNoOfUnit" runat="server" AutoPostBack="true" CssClass="form-control " OnTextChanged="txtNoOfUnit_TextChanged"></asp:TextBox>
                                 </td>
                                 <td style="width: 75px">Unit Price:<br />
-                                    <asp:TextBox ID="txtSellingCost" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtSellingCost" runat="server" CssClass="form-control "></asp:TextBox>
                                 </td>
                                 <td style="width: 100px">Amount:<br />
-                                    <asp:TextBox ID="txtAmount" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control "></asp:TextBox>
                                 </td>
                                 <td>
                                     <br />
@@ -223,11 +226,12 @@
                         <br />
                         
 
-                        <asp:Label ID="lblSubTotal" runat="server" Text="Sub Total" Style="margin-left: 1000px"></asp:Label>
-                        <asp:TextBox ID="txtSubTotal" runat="server" Style="padding-right: 21px"></asp:TextBox>
+                        <asp:Label ID="lblSubTotal" runat="server" Text="Sub Total" Style="margin-left: 950px"></asp:Label>
+                        <asp:TextBox ID="txtSubTotal" runat="server" CssClass="col-sm-4 form-control-sm form-control width" Enabled="false"></asp:TextBox>
                         <br />  
-                        <asp:Label ID="Label2" runat="server" Text="Total" Style="margin-left: 1000px" Font-Bold="True"></asp:Label>
-                        <asp:TextBox ID="txtTotal" runat="server" Style="margin-left: 24px" Font-Bold="True"></asp:TextBox>
+                        <br />
+                        <asp:Label ID="Label2" runat="server" Text="Total" Style="margin-left: 950px" Font-Bold="True"></asp:Label>
+                        <asp:TextBox ID="txtTotal" runat="server" CssClass=" col-sm-4 form-control-sm form-control width" style="margin-left:24px" Font-Bold="True" Enabled="false"></asp:TextBox>
                         <br />
                         <br />
 

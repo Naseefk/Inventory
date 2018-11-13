@@ -30,31 +30,7 @@
     <script src="js/plugins/flot/jquery.flot.symbol.js"></script>
     <script src="js/plugins/flot/jquery.flot.time.js"></script>
 
-    <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <%--<script src="js/plugins/pace/pace.min.js"></script>--%>
-
-    <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <!-- Jvectormap -->
-    <script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-    <!-- EayPIE -->
-    <script src="js/plugins/easypiechart/jquery.easypiechart.js"></script>
-
-    <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
-    <script src="js/plugins/dataTables/datatables.min.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+   
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
    
@@ -73,15 +49,15 @@
                         
 
                         <asp:Label ID="Label1" runat="server" Text="Supplier Name"></asp:Label>
-                        <asp:TextBox ID="txtSname" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSname" runat="server" CssClass="form-control-sm form-control width" ></asp:TextBox>
                         <br />
                         <br />
                         <asp:Label ID="Label2" runat="server" Text="Phone"></asp:Label>
-                        <asp:TextBox ID="txtSphone" runat="server" style="margin-left: 51px" TextMode="Phone"></asp:TextBox>
+                        <asp:TextBox ID="txtSphone" runat="server" CssClass="form-control-sm form-control width" style="margin-left: 51px"  TextMode="Phone"></asp:TextBox>
                         <br />
                         <br />
                         <asp:Label ID="Label3" runat="server" Text="Address"></asp:Label>
-                        <asp:TextBox ID="txtSaddress" runat="server" style="margin-left: 40px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtSaddress" runat="server" CssClass="form-control-sm form-control width" style="margin-left: 40px" TextMode="MultiLine"></asp:TextBox>
                         <br />
                         <br />
                         <asp:Button ID="btnAdd" runat="server" style="margin-left: 200px" class=" btn btn-success m-t-n-xs" Text="Add" OnClick="btnAdd_Click" />

@@ -378,6 +378,7 @@
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\jquery.searchabledropdown-1.0.8.min.js" />
     <Content Include="scripts\pace.min.js" />
+    <Content Include="SupplierDetails.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -451,6 +452,13 @@
     </Compile>
     <Compile Include="Sample.aspx.designer.cs">
       <DependentUpon>Sample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierDetails.aspx.cs">
+      <DependentUpon>SupplierDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupplierDetails.aspx.designer.cs">
+      <DependentUpon>SupplierDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
