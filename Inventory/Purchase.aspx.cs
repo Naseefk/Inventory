@@ -248,24 +248,30 @@ namespace Purchase
         
         protected void btnPurchase_Click(object sender, EventArgs e)
         {
-            int quantity;
-            string pId;
-            n.ExcecuteNonQuery("Update PurchaseTable set PurchaseStatus='true' where PurchaseNo='" + txtPurchaseNo.Text + "' ");
-            p.ExcecuteQuery("Select * from PurchaseTable t1 inner join ProductTable t2 on t1.Item=t2.P_name where PurchaseNo='" + txtPurchaseNo.Text + "' ");
-            for(int i=0; i<p.DT.Rows.Count; i++)
+            if (ddlSupplier.Text != "-1")
             {
-                quantity = Convert.ToInt32(p.DT.Rows[i][9]) + Convert.ToInt32(p.DT.Rows[i][3]);
-                pId = p.DT.Rows[i][6].ToString();
-                q.ExcecuteNonQuery("Update ProductTable set P_unit='" + quantity + "' where P_id='" + pId + "' ");
-                quantity = 0;
+                int quantity;
+                string pId;
+                n.ExcecuteNonQuery("Update PurchaseTable set PurchaseStatus='true' where PurchaseNo='" + txtPurchaseNo.Text + "' ");
+                p.ExcecuteQuery("Select * from PurchaseTable t1 inner join ProductTable t2 on t1.Item=t2.P_name where PurchaseNo='" + txtPurchaseNo.Text + "' ");
+                for (int i = 0; i < p.DT.Rows.Count; i++)
+                {
+                    quantity = Convert.ToInt32(p.DT.Rows[i][9]) + Convert.ToInt32(p.DT.Rows[i][3]);
+                    pId = p.DT.Rows[i][6].ToString();
+                    q.ExcecuteNonQuery("Update ProductTable set P_unit='" + quantity + "' where P_id='" + pId + "' ");
+                    quantity = 0;
+                }
+                p1.ExcecuteNonQuery("Insert into PurchaseInvoiceTable ( P_InvoiceNo, P_Date, S_name, Discount, Total, Notes, Mop, P_No) values('" + txtPurchaseInvoice.Text + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtDiscount.Text + "','" + txtTotal.Text + "','" + txtNotes.Text + "','" + ddlPaymentType.SelectedItem.Text + "','" + txtPurchaseNo.Text + "')");
+                if (ddlPaymentType.SelectedItem.Text == "Credit")
+                {
+                    t.ExcecuteNonQuery("Update SupplierTable set Balance='" + txtTotal.Text + "' where S_name='" + ddlSupplier.SelectedItem.Text + "'");
+                }
+                BindData();
             }
-            p1.ExcecuteNonQuery("Insert into PurchaseInvoiceTable ( P_InvoiceNo, P_Date, S_name, Discount, Total, Notes, Mop, P_No) values('" + txtPurchaseInvoice.Text + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm tt") + "','" + ddlSupplier.SelectedItem.Text + "','" + txtDiscount.Text + "','" + txtTotal.Text + "','" + txtNotes.Text + "','" + ddlPaymentType.SelectedItem.Text + "','" + txtPurchaseNo.Text + "')");
-            if (ddlPaymentType.SelectedItem.Text == "Credit")
+            else
             {
-                t.ExcecuteNonQuery("Update SupplierTable set Balance='" + txtTotal.Text + "' where S_name='" + ddlSupplier.SelectedItem.Text + "'");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Select supplier name')", true);
             }
-            BindData();
-
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

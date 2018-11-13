@@ -130,7 +130,7 @@
                                 <div class="row">
                                     <asp:Label ID="Label5" runat="server" Style="margin-left: 15px" Text="Supplier"></asp:Label>
                                  
-                                        <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control" style="margin-left: 40px"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control" style="margin-left: 40px" Enabled="false"></asp:DropDownList>
                                    
                                     <a onclick="MyPopUpWin1('/AddSupplier.aspx',500,500); return false;" style="margin-left: 4px; color: #fff" class=" btn btn-success"><i class="fa fa-plus"></i></a>
                                 </div>
